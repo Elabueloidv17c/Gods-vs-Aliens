@@ -33,9 +33,12 @@ public class Player : MonoBehaviour
     float m_jumpForce;
     float m_tapSpeed;
     float m_lastPush;
+    float m_positionDestiny;
     private float m_currentDashTime;
+    private float m_layerJump;
     private bool m_dashRunning;
     private bool m_lookingLeft;
+    private bool m_isChangingLayer;
     public float m_maxDashTime;
     public float m_dashSpeed;
     public float m_dashStoppingSpeed;
@@ -48,15 +51,16 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-       // rb = GetComponent<Rigidbody2D>();
+        // rb = GetComponent<Rigidbody2D>();
         //m_stateMachine.setInput(m_input); // Tells the state machine what its inputs are
 
-       
+
         m_collider = GetComponent<BoxCollider2D>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_sprite = GetComponent<SpriteRenderer>();
         m_animator = GetComponent<Animator>();
         m_isGrounded = true;
+        m_isChangingLayer = false;
         m_isCrouching = false;
         m_isDashing = false;
         m_isRunning = false;
@@ -72,9 +76,10 @@ public class Player : MonoBehaviour
         m_walk = 2;
         m_run = 6;
         m_tapSpeed = 0.20f;
+        m_layerJump = 0.7f;
         m_lastPush = m_tapSpeed;
         m_currentDashTime = m_maxDashTime;
-        
+
     }
 
     void Update()
@@ -128,6 +133,7 @@ public class Player : MonoBehaviour
         //Si el jugador se encuentra en el suelo y presiona el boton de salto
         if (Input.GetKeyDown(KeyCode.Space) && m_isGrounded)
         {
+            m_isGrounded = false;
             //Si el personaje no está agachado
             if (!m_isCrouching)
             {
@@ -139,28 +145,47 @@ public class Player : MonoBehaviour
                 //Si está agachado le aplico un incremento de elevacion de 20%
                 m_rigidBody.AddForce(new Vector2(0, m_jumpForce * 1.2f));
             }
-            m_isGrounded = false;
+            m_isGrounded = true;
         }
     }
 
     void ChangeLayer()
     {
         //LayerUp
-        if (Input.GetKeyUp(KeyCode.LeftControl) && m_isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && m_isGrounded)
+        {
+            m_positionDestiny = gameObject.transform.position.y + m_layerJump;
+            m_isChangingLayer = true;
+        }
+
+        if (m_isChangingLayer)
         {
             if (gameObject.layer == 14 || gameObject.layer == 13)
             {
-                m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, 1.0f);
-                gameObject.layer = gameObject.layer - 1;
+                m_rigidBody.gravityScale = 0;
+
+                if (gameObject.transform.position.y >= m_positionDestiny)
+                {
+                    gameObject.layer -= 1;
+                    m_rigidBody.gravityScale = 1;
+                    m_isChangingLayer = false;
+                }
+
+                else
+                {
+                    gameObject.transform.position = new Vector2(gameObject.transform.position.x,
+                    gameObject.transform.position.y + (m_layerJump * Time.deltaTime * 3.2f));
+                }
             }
         }
-        //LayyerDown
-        if (Input.GetKeyUp(KeyCode.LeftShift) && m_isGrounded)
+
+        //LayerDown
+        if (Input.GetKeyDown(KeyCode.LeftShift) && m_isGrounded)
         {
             if (gameObject.layer == 12 || gameObject.layer == 13)
             {
-                m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, 3.0f);
-                gameObject.layer = gameObject.layer + 1;
+                m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, 0.0f);
+                gameObject.layer += 1;
             }
         }
     }
@@ -184,13 +209,13 @@ public class Player : MonoBehaviour
                         //enemieToDamage[i].GetComponent<Transform>().TakeDamage(m_damage);//esto es para golpear a los enemigos
                     }
                 }
-              //  m_timeBtwAttack = m_startTimeBtwAttack;
+                //  m_timeBtwAttack = m_startTimeBtwAttack;
             }
             //else
             //{
             //    m_timeBtwAttack -= Time.deltaTime;
             //}
-           // m_attackTime += Time.deltaTime;
+            // m_attackTime += Time.deltaTime;
             m_isAttack = true;
         }
     }
@@ -319,13 +344,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
         if (collision.gameObject.tag == "PlayArea")
         {
             //mp_actualLayer = collision.otherCollider.GetComponent<BoxCollider2D>();
             //gameObject.layer = mp_actualLayer.GetComponent<GameObject>().layer;
             m_isGrounded = true;
         }
-        
+
     }
 }
