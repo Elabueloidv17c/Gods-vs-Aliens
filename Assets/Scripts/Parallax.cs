@@ -19,6 +19,70 @@ enum Depth
 
 public class Parallax : MonoBehaviour
 {
+    /* Parallax y Scrolling con variables modificables */
+    public bool bScrolling, bParallax;
+
+    public float fbackgroundSize;
+    public float fParallaxSpeed;
+
+    private Transform cameraTransform;
+    private Transform[] layers;
+    private float fViewZone = 10;
+    private int iLeftIndex;
+    private int iRightIndex;
+    private float fLastCameraX;
+
+    private void Start()
+    {
+        cameraTransform = Camera.main.transform;
+        fLastCameraX = cameraTransform.position.x;
+        layers = new Transform[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+            layers[i] = transform.GetChild(i);
+        iLeftIndex = 0;
+        iRightIndex = layers.Length - 1;
+    }
+
+    private void Update()
+    {
+        if (bParallax)
+        {
+            float deltaX = cameraTransform.position.x - fLastCameraX;
+            transform.position += Vector3.right * (deltaX * fParallaxSpeed);
+        }
+
+        fLastCameraX = cameraTransform.position.x;
+
+        if (bScrolling)
+        {
+            if (cameraTransform.position.x < (layers[iLeftIndex].transform.position.x + fViewZone))
+                ScrollLeft();
+
+            if (cameraTransform.position.x > (layers[iRightIndex].transform.position.x - fViewZone))
+                ScrollRight();
+        }
+    }
+
+    private void ScrollLeft()
+    {
+        layers[iRightIndex].position = Vector3.right * (layers[iLeftIndex].position.x - fbackgroundSize);
+        iLeftIndex = iRightIndex;
+        iRightIndex--;
+        if (iRightIndex < 0)
+            iRightIndex = layers.Length - 1;
+    }
+
+    private void ScrollRight()
+    {
+        layers[iLeftIndex].position = Vector3.right * (layers[iRightIndex].position.x + fbackgroundSize);
+        iRightIndex = iLeftIndex;
+        iLeftIndex++;
+        if (iLeftIndex < 0)
+            iLeftIndex = 0;
+    }
+
+    /*
+     * Codigo dependiente de un eje en Z
     public Transform[] backgrounds;     //Arreglo de los backgrounds para el parallax
     private float[] parallaxScales;     //Proporciones del movimiento de la camara para mover el background
     public float smoothing = 1f;        //Lo suave que sera el parallax
@@ -67,4 +131,5 @@ public class Parallax : MonoBehaviour
         //Acomodar la posicion anterior de la camara al final del frame
         previousCamPos = cam.position;
     }
+    */
 }
