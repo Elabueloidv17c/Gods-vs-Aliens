@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputStats
+public class PlayerInputStats : MonoBehaviour
 {
     public KeyCode kChangeLayerUp;
     public KeyCode kChangeLayerDown;
@@ -17,6 +17,7 @@ public class PlayerInputStats
     public float m_frunSpeed;
     public float m_fjumpForce;
     public float m_fHP;
+    public float m_SpeedDampener;
 
     public int m_nlives;
 }

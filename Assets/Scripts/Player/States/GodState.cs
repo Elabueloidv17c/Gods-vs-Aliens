@@ -13,7 +13,7 @@ public abstract class GodState : MonoBehaviour
      * || WARNING || WARNING || WARNING || WARNING || WARNING ||
      ************************
      */
-    private LokiStateMachine m_LokiSM;
+    /*private LokiStateMachine m_LokiSM;
     public LokiStateMachine LokiSM
     {
         get
@@ -25,6 +25,13 @@ public abstract class GodState : MonoBehaviour
 
             return m_LokiSM;
         }
+    }*/
+
+    protected GodStateMachine GSM = null;
+
+    public void setFSM(GodStateMachine FSM)
+    {
+        GSM = FSM;
     }
 
     public abstract void onEnter();

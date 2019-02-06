@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Player\States\GodJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodRunState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GodStateDash.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodWalkState.cs" />
     <Compile Include="Assets\Scripts\Player\States\Loki\LokiStateMachine.cs" />
