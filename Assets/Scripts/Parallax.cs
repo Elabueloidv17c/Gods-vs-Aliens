@@ -22,8 +22,8 @@ public class Parallax : MonoBehaviour
     /* Parallax y Scrolling con variables modificables */
     public bool bScrolling, bParallax;
 
-    public float fbackgroundSize;
-    public float fParallaxSpeed;
+    public float fbackgroundSize = 0;
+    public float fParallaxSpeed = 0;
 
     private Transform cameraTransform;
     private Transform[] layers;

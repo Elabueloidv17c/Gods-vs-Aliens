@@ -60,6 +60,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemies\atkStats.cs" />
+    <Compile Include="Assets\Scripts\Enemies\damageHit.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyChase.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyKeepDist.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyPatrol.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyStateMchn.cs" />
+    <Compile Include="Assets\Scripts\Enemies\enemyStats.cs" />
+    <Compile Include="Assets\Scripts\Enemies\lightShipShot.cs" />
+    <Compile Include="Assets\Scripts\Enemies\playerList.cs" />
+    <Compile Include="Assets\Scripts\Enemies\playerStats.cs" />
+    <Compile Include="Assets\Scripts\MultipleTargetCamara.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputStats.cs" />
