@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class GodWalkState : GodState
 {
-    private bool gotInput;
     private float runFrameWindow;
     private float walkDir;
 
     public override void onEnter()
     {
         runFrameWindow = 0.4f;
-        gotInput = false;
     }
 
     public override void onExit()
     {
         runFrameWindow = 0.4f;
-        gotInput = false;
     }
 
     public override void onUpdate()
@@ -25,17 +22,12 @@ public class GodWalkState : GodState
         //--------------------------------------------------------------------------------------------------------------------
         //Logic
         //--------------------------------------------------------------------------------------------------------------------
-        gotInput = false;
-        GSM.rb.velocity *= GSM.PSInput.m_SpeedDampener;
         runFrameWindow -= Time.deltaTime;
-
-        Debug.Log(runFrameWindow);
 
         if (Input.GetKey(GSM.PSInput.kRight) || Input.GetKey(GSM.PSInput.kLeft))
         {
-            GSM.rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0) * GSM.PSInput.m_fwalkSpeed);
-            gotInput = true;
             walkDir = Input.GetAxis("Horizontal");
+            GSM.rb.velocity = new Vector2(walkDir * GSM.PSInput.m_fwalkSpeed, GSM.rb.velocity.y);
         }
 
         //--------------------------------------------------------------------------------------------------------------------
@@ -77,7 +69,7 @@ public class GodWalkState : GodState
         }
 
         //Idle
-        else if (!gotInput && runFrameWindow <= 0)
+        else if (runFrameWindow <= 0)
         {
             GSM.setState(GSM.Idle);
         }

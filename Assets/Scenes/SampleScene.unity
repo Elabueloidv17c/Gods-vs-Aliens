@@ -347,7 +347,7 @@ Transform:
   m_GameObject: {fileID: 1307830621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.6807, y: 0.23000368, z: 0.029965898}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9125, y: 1, z: 1}
   m_Children:
   - {fileID: 1992669976}
   - {fileID: 1492996479}
@@ -454,7 +454,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1734465534
 Animator:
   serializedVersion: 3
@@ -582,9 +582,9 @@ MonoBehaviour:
   kDown: 274
   kDash: 97
   kJump: 32
-  m_fwalkSpeed: 15
-  m_frunSpeed: 30
-  m_fjumpForce: 30
+  m_fwalkSpeed: 5
+  m_frunSpeed: 10
+  m_fjumpForce: 5
   m_fHP: 100
   m_SpeedDampener: 0.94
   m_nlives: 3
