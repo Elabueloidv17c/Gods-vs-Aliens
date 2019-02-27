@@ -11,7 +11,7 @@ public class GodIdleState : GodState
 
     public override void onExit()
     {
-
+        GSM.PSInput.m_lastState = LastState.Idle;
     }
 
     public override void onUpdate()
@@ -36,12 +36,6 @@ public class GodIdleState : GodState
         else if (Input.GetKeyDown(GSM.PSInput.kJump))
         {
             GSM.setState(GSM.Jump);
-        }
-
-        //Dash
-        else if (Input.GetKeyDown(GSM.PSInput.kDash))
-        {
-            GSM.setState(GSM.Dash);
         }
 
         //Change Layer

@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Player\States\GodChangeLayerState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodCrouchState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodCrouchWalkState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GodDashState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodDieState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodIdleState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodJumpState.cs" />

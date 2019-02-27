@@ -11,11 +11,32 @@ public class GodJumpState : GodState
 
     public override void onExit()
     {
-
+        GSM.PSInput.m_lastState = LastState.Jump;
     }
 
     public override void onUpdate()
     {
+        //There is no logic during jump state
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (GSM.PSInput.m_lastState == LastState.Idle)
+            {
+                GSM.setState(GSM.Idle);
+            }
+
+            if (GSM.PSInput.m_lastState == LastState.Walk)
+            {
+                GSM.setState(GSM.Walk);
+            }
+
+            if (GSM.PSInput.m_lastState == LastState.Run)
+            {
+                GSM.setState(GSM.Run);
+            }
+        }
     }
 }

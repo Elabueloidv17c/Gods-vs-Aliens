@@ -13,7 +13,7 @@ public class GodStateMachine : MonoBehaviour
     public GodCrouchState Crouch;
     public GodCrouchWalkState CrouchWalk;
     public GodDieState Die;
-    public GodStateDash Dash;
+    public GodDashState Dash;
     public GodIdleState Idle;
     public GodJumpState Jump;
     public GodRunState Run;

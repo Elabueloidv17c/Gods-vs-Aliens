@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LastState
+{
+    ChangeLayer,
+    Crouch,
+    CrouchWalk,
+    Die,
+    Dash,
+    Idle,
+    Jump,
+    Run,
+    Walk
+}
+
 public class PlayerInputStats : MonoBehaviour
 {
     public KeyCode kChangeLayerUp;
@@ -16,8 +29,19 @@ public class PlayerInputStats : MonoBehaviour
     public float m_fwalkSpeed;
     public float m_frunSpeed;
     public float m_fjumpForce;
-    public float m_fHP;
-    public float m_SpeedDampener;
+
+    public float m_fdashCoolDown;
+    public float m_currentDashCooldown;
+    public float m_fdashTime;
+    public float m_fdashSpeed;
 
     public int m_nlives;
+
+    public float m_maxHealth;
+    public float m_currentHealth;
+
+    public float m_maxStamina;
+    public float m_currentStamina;
+
+    public LastState m_lastState;
 }

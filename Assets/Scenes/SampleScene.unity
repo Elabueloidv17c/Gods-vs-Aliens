@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -138,6 +139,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a25c35e4edd8974d891f44dadfdcf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 1734465537}
+  offset: {x: 0, y: 1, z: -9}
+  smoothTime: 0.5
+  minZoom: 40
+  maxZoom: 10
+  zoomLimiter: 50
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -585,9 +605,16 @@ MonoBehaviour:
   m_fwalkSpeed: 5
   m_frunSpeed: 10
   m_fjumpForce: 5
-  m_fHP: 100
-  m_SpeedDampener: 0.94
+  m_fdashCoolDown: 0
+  m_currentDashCooldown: 0
+  m_fdashTime: 0
+  m_fdashSpeed: 0
   m_nlives: 3
+  m_maxHealth: 0
+  m_currentHealth: 0
+  m_maxStamina: 0
+  m_currentStamina: 0
+  m_lastState: 0
 --- !u!114 &1734465540
 MonoBehaviour:
   m_ObjectHideFlags: 0
