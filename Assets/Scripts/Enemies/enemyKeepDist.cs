@@ -21,21 +21,21 @@ public class enemyKeepDist : enemyState
         m_target = _target;
     }
 
-    public override void onEnter(enemyStateMchn _cntrl)
+    public override void onEnter()
     {
         //Debug.Log("Enemy keeps distance");
         timer = 3.0f;
-        distance = _cntrl.m_viewRadius;
+        distance = ESM.m_stats.m_viewRadius;
     }
 
-    public override void onUpdate(enemyStateMchn _cntrl)
+    public override void onUpdate()
     {
         
-        keepDist(_cntrl.m_velocity);
+        keepDist(ESM.m_stats.m_velocity);
         if(timer <= 0)
         {
-            _cntrl.sChase.setTarget(m_target);
-            _cntrl.setState(_cntrl.sChase);
+            ESM.sChase.setTarget(m_target);
+            ESM.setState(ESM.sChase);
         }
         else
         {
@@ -44,7 +44,7 @@ public class enemyKeepDist : enemyState
         
     }
 
-    public override void onExit(enemyStateMchn _cntrl)
+    public override void onExit()
     {
 
     }

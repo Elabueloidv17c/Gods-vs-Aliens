@@ -11,4 +11,6 @@ public class enemyStats : MonoBehaviour {
     public float m_hp;
     public float m_weight;
     public float m_attackPower;
+    public float m_viewRadius;
+    public float m_velocity;
 }
