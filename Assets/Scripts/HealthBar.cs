@@ -79,7 +79,7 @@ public class HealthBar : MonoBehaviour
     {
         if (Stamina < 100)
         {
-            Stamina += 1;
+            Stamina += 0.3f;
             SBar.size = Stamina / 100;
         }
     }

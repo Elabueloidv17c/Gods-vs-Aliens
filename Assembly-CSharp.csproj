@@ -60,8 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemies\atkStats.cs" />
-    <Compile Include="Assets\Scripts\Enemies\damageHit.cs" />
+    <Compile Include="Assets\Scripts\atkStats.cs" />
+    <Compile Include="Assets\Scripts\damageHit.cs" />
     <Compile Include="Assets\Scripts\Enemies\enemyAttack.cs" />
     <Compile Include="Assets\Scripts\Enemies\enemyChase.cs" />
     <Compile Include="Assets\Scripts\Enemies\enemyKeepDist.cs" />
@@ -69,9 +69,8 @@
     <Compile Include="Assets\Scripts\Enemies\enemyState.cs" />
     <Compile Include="Assets\Scripts\Enemies\enemyStateMchn.cs" />
     <Compile Include="Assets\Scripts\Enemies\enemyStats.cs" />
-    <Compile Include="Assets\Scripts\Enemies\lightShipShot.cs" />
-    <Compile Include="Assets\Scripts\Enemies\playerList.cs" />
-    <Compile Include="Assets\Scripts\Enemies\playerStats.cs" />
+    <Compile Include="Assets\Scripts\Enemies\lightShip\LightShipFSM.cs" />
+    <Compile Include="Assets\Scripts\Enemies\lightShip\lightShipShot.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\MultipleTargetCamara.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="Assets\Scripts\Player\States\GodWalkState.cs" />
     <Compile Include="Assets\Scripts\Player\States\Loki\LokiStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\States\Loki\LokiWalk.cs" />
+    <Compile Include="Assets\Scripts\playerList.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/ferna/Documents/GitHub/Gods-vs-Aliens/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -19,7 +19,7 @@ public class enemyStateMchn : MonoBehaviour {
     public enemyPatrol sPatrol;
     public enemyChase sChase;
     public enemyAttack sAttack;
-    public enemyKeepDist sKeepDist;
+    //public enemyKeepDist sKeepDist;
     public GameObject[] plyrList; // The list of players gets fetched for behaviours
 
     

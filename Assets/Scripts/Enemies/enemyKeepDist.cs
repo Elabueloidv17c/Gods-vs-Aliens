@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyKeepDist : enemyState
-{
-    /**
+//public class enemyKeepDist : enemyState
+//{
+    /*
      * ************************
      * * State where the enemy tries to maintain a set distance from the player that damaged it
      * ************************
      * */
+    /*
     private Vector2 Dir;
     private Rigidbody2D rb;
     private GameObject m_target;
@@ -93,4 +94,5 @@ public class enemyKeepDist : enemyState
     {
         return Mathf.Sqrt(vec.x * vec.x + vec.y * vec.y);
     }
-}
+    */
+//}

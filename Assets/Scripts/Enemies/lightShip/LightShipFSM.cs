@@ -14,11 +14,11 @@ public class LightShipFSM : enemyStateMchn
 
     void Start()
     {
-        stkEnemyState = new Stack<enemyState>();
+        //stkEnemyState = new Stack<enemyState>();
         sPatrol = gameObject.AddComponent(typeof(enemyPatrol)) as enemyPatrol;
         sChase = gameObject.AddComponent(typeof(enemyChase)) as enemyChase;
         sAttack = gameObject.AddComponent(typeof(enemyAttack)) as enemyAttack;
-        sKeepDist = gameObject.AddComponent(typeof(enemyKeepDist)) as enemyKeepDist;
+        //sKeepDist = gameObject.AddComponent(typeof(enemyKeepDist)) as enemyKeepDist;
 
         animtr = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +37,6 @@ public class LightShipFSM : enemyStateMchn
     // Update is called once per frame
     void Update()
     {
-        stkEnemyState.Peek().onUpdate();
+        //stkEnemyState.Peek().onUpdate();
     }
 }
