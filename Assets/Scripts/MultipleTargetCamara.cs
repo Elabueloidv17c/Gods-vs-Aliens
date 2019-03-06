@@ -11,13 +11,17 @@ public class MultipleTargetCamara : MonoBehaviour
     public float smoothTime = .5f;
     public float minZoom = 2.1f;
     public float maxZoom = 2.35f;
+    public float fmod;
+    public float dampener;
 
     private Vector3 velocity;
     private Camera cam;
+    private Rigidbody2D rb;
 
     private void Start()
     {
         cam = GetComponent<Camera>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void LateUpdate()
@@ -41,7 +45,9 @@ public class MultipleTargetCamara : MonoBehaviour
 
         Vector3 newPosition = centerPoint + offset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        /*transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);*/
+        rb.AddForce((newPosition - transform.position) * fmod);
+        rb.velocity *= dampener;
     }
 
     float GetGreatestDistance()
