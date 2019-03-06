@@ -22,7 +22,7 @@ public class Parallax : MonoBehaviour
     /* Parallax y Scrolling con variables modificables */
     public bool bScrolling, bParallax;
 
-    public float fbackgroundSize = 0;
+    public float fBackgroundSize = 0;
     public float fParallaxSpeed = 0;
 
     private Transform cameraTransform;
@@ -65,7 +65,7 @@ public class Parallax : MonoBehaviour
 
     private void ScrollLeft()
     {
-        layers[iRightIndex].position = Vector3.right * (layers[iLeftIndex].position.x - fbackgroundSize);
+        layers[iRightIndex].position = (Vector3.right * (layers[iLeftIndex].position.x - fBackgroundSize)) + (Vector3.up * layers[iLeftIndex].position.y) + (Vector3.forward * layers[iLeftIndex].position.z);
         iLeftIndex = iRightIndex;
         iRightIndex--;
         if (iRightIndex < 0)
@@ -74,10 +74,10 @@ public class Parallax : MonoBehaviour
 
     private void ScrollRight()
     {
-        layers[iLeftIndex].position = Vector3.right * (layers[iRightIndex].position.x + fbackgroundSize);
+        layers[iLeftIndex].position = Vector3.right * (layers[iRightIndex].position.x + fBackgroundSize) + (Vector3.up * layers[iRightIndex].position.y) + (Vector3.forward * layers[iRightIndex].position.z);
         iRightIndex = iLeftIndex;
         iLeftIndex++;
-        if (iLeftIndex < 0)
+        if (iLeftIndex == layers.Length)
             iLeftIndex = 0;
     }
 

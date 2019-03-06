@@ -4,63 +4,91 @@ using UnityEngine;
 
 public class GodWalkState : GodState
 {
-    private bool gotInput;
     private float runFrameWindow;
     private float walkDir;
+    private bool gotInput;
 
     public override void onEnter()
     {
         runFrameWindow = 0.4f;
         gotInput = false;
     }
+
     public override void onExit()
     {
+        GSM.PSInput.m_lastState = LastState.Walk;
         runFrameWindow = 0.4f;
+        GSM.PSInput.m_currentDashCooldown = 0.0f;
         gotInput = false;
     }
+
     public override void onUpdate()
     {
+        //--------------------------------------------------------------------------------------------------------------------
+        //Logic
+        //--------------------------------------------------------------------------------------------------------------------
+        runFrameWindow -= Time.deltaTime;
+        GSM.PSInput.m_currentDashCooldown += Time.deltaTime;
         gotInput = false;
+
+
         if (Input.GetKey(GSM.PSInput.kRight) || Input.GetKey(GSM.PSInput.kLeft))
         {
-            GSM.rb.AddForce(new Vector3(Input.GetAxis("Horizontal") , 0) * GSM.PSInput.m_fwalkSpeed);
-            gotInput = true;
             walkDir = Input.GetAxis("Horizontal");
+            GSM.rb.velocity = new Vector2(walkDir * GSM.PSInput.m_fwalkSpeed, GSM.rb.velocity.y);
+
+            gotInput = true;
         }
-        else if (Input.GetKeyDown(GSM.PSInput.kRight) || Input.GetKeyDown(GSM.PSInput.kLeft))
+
+        //--------------------------------------------------------------------------------------------------------------------
+        //Transitions
+        //--------------------------------------------------------------------------------------------------------------------
+
+        //Run
+        if (runFrameWindow > 0 && (walkDir < 0 && Input.GetKeyDown(GSM.PSInput.kLeft)) || (walkDir > 0 && Input.GetKeyDown(GSM.PSInput.kRight)))
         {
-            if((walkDir < 0 && Input.GetKeyDown(GSM.PSInput.kLeft)) || (walkDir > 0 && Input.GetKeyDown(GSM.PSInput.kRight)))
-            {
-                GSM.setState(GSM.Run);
-            }
+            GSM.setState(GSM.Run);
         }
+
+        //Dash
+        else if (Input.GetKey(GSM.PSInput.kDash) && (GSM.PSInput.m_currentDashCooldown >= GSM.PSInput.m_fdashCoolDown))
+        {
+            GSM.setState(GSM.Dash);
+        }
+
+        //Jump
         else if (Input.GetKeyDown(GSM.PSInput.kJump))
         {
             GSM.setState(GSM.Jump);
         }
+
+        //Crouch
+        //Crouch
         else if (Input.GetKeyDown(GSM.PSInput.kDown))
         {
             GSM.setState(GSM.CrouchWalk);
         }
+
+        //Change Layer
         else if (Input.GetKeyDown(GSM.PSInput.kChangeLayerDown) || Input.GetKeyDown(GSM.PSInput.kChangeLayerUp))
         {
             GSM.setState(GSM.ChangeLayer);
+
             if (Input.GetKeyDown(GSM.PSInput.kChangeLayerDown))
             {
                 GSM.ChangeLayer.setLayerDir(false);
             }
+
             else
             {
                 GSM.ChangeLayer.setLayerDir(true);
             }
         }
-        else if (!gotInput && runFrameWindow <= 0.0f)
+
+        //Idle
+        else if (!gotInput && runFrameWindow <= 0)
         {
             GSM.setState(GSM.Idle);
         }
-        //float y = GSM.rb.velocity.y;
-
-        GSM.rb.velocity *= GSM.PSInput.m_SpeedDampener;
-        runFrameWindow -= Time.deltaTime;
     }
 }

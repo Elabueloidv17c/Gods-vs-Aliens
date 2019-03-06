@@ -11,6 +11,8 @@ public class LokiStateMachine : GodStateMachine
         PSInput = GetComponent<PlayerInputStats>();
         godStack = new Stack<GodState>();
 
+        Dash = gameObject.AddComponent(typeof(GodDashState)) as GodDashState;
+        Dash.setFSM(this);
         ChangeLayer = gameObject.AddComponent(typeof(GodChangeLayerState)) as GodChangeLayerState;
         ChangeLayer.setFSM(this);
         Crouch = gameObject.AddComponent(typeof(GodCrouchState)) as GodCrouchState;

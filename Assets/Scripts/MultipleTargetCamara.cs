@@ -9,9 +9,8 @@ public class MultipleTargetCamara : MonoBehaviour
 
     public Vector3 offset;
     public float smoothTime = .5f;
-    public float minZoom = 40f;
-    public float maxZoom = 10f;
-    public float zoomLimiter = 50f;
+    public float minZoom = 2.1f;
+    public float maxZoom = 2.35f;
 
     private Vector3 velocity;
     private Camera cam;
@@ -32,8 +31,8 @@ public class MultipleTargetCamara : MonoBehaviour
 
     void Zoom()
     {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance());
-        cam.fieldOfView= Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / maxZoom);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
     }
 
     void Move()

@@ -6,30 +6,39 @@ public class GodIdleState : GodState
 {
     public override void onEnter()
     {
-
+        GSM.rb.velocity = new Vector2(0.0f, 0.0f);
     }
+
     public override void onExit()
     {
-
+        GSM.PSInput.m_lastState = LastState.Idle;
     }
+
     public override void onUpdate()
-    {
-        if (Input.GetKeyDown(GSM.PSInput.kRight) || Input.GetKeyDown(GSM.PSInput.kLeft))
+    { 
+        //--------------------------------------------------------------------------------------------------------------------
+        //Transitions
+        //--------------------------------------------------------------------------------------------------------------------
+
+        //Walk
+        if (Input.GetKey(GSM.PSInput.kRight) || Input.GetKey(GSM.PSInput.kLeft))
         {
             GSM.setState(GSM.Walk);
         }
+
+        //Crouch
         else if (Input.GetKeyDown(GSM.PSInput.kDown))
         {
             GSM.setState(GSM.Crouch);
         }
+
+        //Jump
         else if (Input.GetKeyDown(GSM.PSInput.kJump))
         {
             GSM.setState(GSM.Jump);
         }
-        else if (Input.GetKeyDown(GSM.PSInput.kDash))
-        {
-            GSM.setState(GSM.Dash);
-        }
+
+        //Change Layer
         else if (Input.GetKeyDown(GSM.PSInput.kChangeLayerDown) || Input.GetKeyDown(GSM.PSInput.kChangeLayerUp))
         {
             GSM.setState(GSM.ChangeLayer);
@@ -37,6 +46,7 @@ public class GodIdleState : GodState
             {
                 GSM.ChangeLayer.setLayerDir(false);
             }
+
             else
             {
                 GSM.ChangeLayer.setLayerDir(true);
