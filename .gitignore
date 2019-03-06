@@ -10,3 +10,5 @@ Library/StateCache/
 .vs/
 Library/CrashedAssetImports.txt
 *.meta
+Library/shadercompiler-UnityShaderCompiler.exe0.log
+*.log

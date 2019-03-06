@@ -9,7 +9,7 @@ public class enemyStateMchn : MonoBehaviour {
      * ************************
      * */
 
-    private Stack<enemyState> stkEnemyState; // The stack for the state machine
+    protected Stack<enemyState> stkEnemyState; // The stack for the state machine
     public Rigidbody2D rb;
     public Animator animtr;
     public SpriteRenderer sr; // Sprite renderer flipX = false = facing left
