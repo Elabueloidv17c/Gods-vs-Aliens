@@ -10,12 +10,14 @@ public class GodWalkState : GodState
 
     public override void onEnter()
     {
+        GSM.m_animator.SetBool("isWalking", true);
         runFrameWindow = 0.4f;
         gotInput = false;
     }
 
     public override void onExit()
     {
+        GSM.m_animator.SetBool("isWalking", false);
         GSM.PSInput.m_lastState = LastState.Walk;
         runFrameWindow = 0.4f;
         GSM.PSInput.m_currentDashCooldown = 0.0f;

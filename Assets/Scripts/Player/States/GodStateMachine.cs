@@ -5,6 +5,7 @@ using UnityEngine;
 public class GodStateMachine : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator m_animator;
 
     public Stack<GodState> godStack;
     public PlayerInputStats PSInput;
@@ -20,6 +21,7 @@ public class GodStateMachine : MonoBehaviour
     public GodWalkState Walk;
 
     public GodState currState;
+
 
     public void setState(GodState newState)
     {

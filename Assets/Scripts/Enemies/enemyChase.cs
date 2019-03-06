@@ -38,7 +38,7 @@ public class enemyChase : enemyState
         {
             Vector2 v = m_target.transform.position - ESM.transform.position;
             v.y = 0;
-            rb.AddForce(v.normalized /** _cntrl.m_velocity*/);
+            rb.AddForce(v.normalized * ESM.m_stats.m_velocity);
         }
         ESM.rb.velocity *= 0.94f;
     }

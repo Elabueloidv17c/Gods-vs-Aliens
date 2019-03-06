@@ -7,8 +7,11 @@ public class GodDashState : GodState
     float currentDashTime;
     float direction;
 
+
     public override void onEnter()
     {
+        GSM.m_animator.SetBool("isDashing", true);
+
         if(GSM.rb.velocity.x > 0.0f)
         {
             direction = 1.0f;
@@ -25,6 +28,8 @@ public class GodDashState : GodState
 
     public override void onExit()
     {
+        GSM.m_animator.SetBool("isDashing", false);
+
         currentDashTime = 0.0f;
         direction = 0.0f;
     }

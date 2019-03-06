@@ -7,6 +7,7 @@ public class LokiStateMachine : GodStateMachine
     // Start is called before the first frame update
     void Start()
     {
+        m_animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         PSInput = GetComponent<PlayerInputStats>();
         godStack = new Stack<GodState>();
