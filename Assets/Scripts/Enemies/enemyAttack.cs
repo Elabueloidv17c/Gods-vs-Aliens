@@ -13,26 +13,26 @@ public class enemyAttack : enemyState
         target = _target;
     }
 
-    public override void onEnter(enemyStateMchn _cntrl)
+    public override void onEnter()
     {
         //Debug.Log("Enemy attacks");
-        m_stateTimer = _cntrl.m_attackDuration;
-        GameObject clone = Instantiate(_cntrl.m_hitBox, _cntrl.transform);
-        float cloneMass = clone.GetComponent<Rigidbody2D>().mass;
-        clone.GetComponent<Transform>().localScale *= 0.5f;
-        clone.GetComponent<Rigidbody2D>().AddForce((target.transform.position - _cntrl.transform.position).normalized * _cntrl.m_shotSpeed * cloneMass);
-        if (_cntrl.sr.flipX)
+        //m_stateTimer = ESM;
+        //GameObject clone = Instantiate(ESM.m_hitBox, ESM.transform);
+        //float cloneMass = clone.GetComponent<Rigidbody2D>().mass;
+        //clone.GetComponent<Transform>().localScale *= 0.5f;
+        //clone.GetComponent<Rigidbody2D>().AddForce((target.transform.position - ESM.transform.position).normalized * ESM.m_shotSpeed * cloneMass);
+        if (ESM.sr.flipX)
         {
-            clone.GetComponent<SpriteRenderer>().flipX = true;
+            //clone.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 
-    public override void onUpdate(enemyStateMchn _cntrl)
+    public override void onUpdate()
     {
         if (m_stateTimer <= 0)
         {
-            _cntrl.sChase.setTarget(target);
-            _cntrl.setState(_cntrl.sChase);
+            ESM.sChase.setTarget(target);
+            ESM.setState(ESM.sChase);
         }
         else
         {
@@ -41,8 +41,8 @@ public class enemyAttack : enemyState
         
     }
 
-    public override void onExit(enemyStateMchn _cntrl)
+    public override void onExit()
     {
-        _cntrl.animtr.SetBool("Move", true);
+        ESM.animtr.SetBool("Move", true);
     }
 }

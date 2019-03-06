@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(menuName = "PluggableAI/State")]
 abstract public class enemyState : MonoBehaviour {
 
     /**
@@ -10,10 +9,15 @@ abstract public class enemyState : MonoBehaviour {
      * * Base class for enemy states
      * ************************
      * */
-    public Color sceneGizmoColor = Color.grey;
+    protected enemyStateMchn ESM = null;
+
+    public void setFSM(enemyStateMchn FSM)
+    {
+        ESM = FSM;
+    }
 
 
-    abstract public void onEnter(enemyStateMchn cntrl);
-    abstract public void onUpdate(enemyStateMchn cntrl);
-    abstract public void onExit(enemyStateMchn cntrl);
+    abstract public void onEnter();
+    abstract public void onUpdate();
+    abstract public void onExit();
 }

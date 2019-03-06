@@ -9,23 +9,23 @@ public class enemyPatrol : enemyState
     private float navTimer = 0;
     private bool goingRight = false;
 
-    public override void onEnter(enemyStateMchn _cntrl)
+    public override void onEnter()
     {
         //Debug.Log("Enemy patrols");
         //_cntrl.animtr.
     }
 
-    public override void onUpdate(enemyStateMchn _cntrl)
+    public override void onUpdate()
     {
        // Debug.Log("doing the patrol update");
         //Debug.Log(_cntrl.plyrList.Length);
-        for (int i = 0; i < _cntrl.plyrList.Length; ++i)
+        for (int i = 0; i < ESM.plyrList.Length; ++i)
         {
             //Debug.Log("Searching player list");
-            if((_cntrl.transform.position - _cntrl.plyrList[i].transform.position).magnitude <= _cntrl.m_viewRadius)
+            if((ESM.transform.position - ESM.plyrList[i].transform.position).magnitude <= 5 /*ESM.m_viewRadius*/)
             {
-                _cntrl.sChase.setTarget(_cntrl.plyrList[i]);
-                _cntrl.setState(_cntrl.sChase);
+                ESM.sChase.setTarget(ESM.plyrList[i]);
+                ESM.setState(ESM.sChase);
             }
 
         }
@@ -44,7 +44,7 @@ public class enemyPatrol : enemyState
         //navTimer += Time.deltaTime;
     }
 
-    public override void onExit(enemyStateMchn _cntrl)
+    public override void onExit()
     {
         // unload animation / graphics
     }

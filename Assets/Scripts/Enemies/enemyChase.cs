@@ -20,30 +20,30 @@ public class enemyChase : enemyState
         m_target = t;
     }
 
-    public override void onEnter(enemyStateMchn _cntrl)
+    public override void onEnter()
     {
         //Debug.Log("Enemy chases");
-        rb = _cntrl.rb;
+        rb = ESM.rb;
     }
 
-    public override void onUpdate(enemyStateMchn _cntrl)
+    public override void onUpdate()
     {
         // Temporary seek implementation
-        if ((m_target.transform.position - _cntrl.transform.position).magnitude < _cntrl.m_attackDist)
+        if ((m_target.transform.position - ESM.transform.position).magnitude < 5 /*ESM.m_attackDist*/)
         {
-            _cntrl.sAttack.setTarget(m_target);
-            _cntrl.pushState(_cntrl.sAttack);
+            ESM.sAttack.setTarget(m_target);
+            ESM.pushState(ESM.sAttack);
         }
         else
         {
-            Vector2 v = m_target.transform.position - _cntrl.transform.position;
+            Vector2 v = m_target.transform.position - ESM.transform.position;
             v.y = 0;
-            rb.AddForce(v.normalized * _cntrl.m_velocity);
+            rb.AddForce(v.normalized /** _cntrl.m_velocity*/);
         }
-        _cntrl.rb.velocity *= 0.94f;
+        ESM.rb.velocity *= 0.94f;
     }
 
-    public override void onExit(enemyStateMchn _cntrl)
+    public override void onExit()
     {
         m_target = null;
     }

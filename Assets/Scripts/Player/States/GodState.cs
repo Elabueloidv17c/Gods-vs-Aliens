@@ -4,29 +4,6 @@ using UnityEngine;
 
 public abstract class GodState : MonoBehaviour
 {
-    /**
-     ************************
-     * || WARNING || WARNING || WARNING || WARNING || WARNING ||
-     * 
-     * Loki's FSM to be used by ONLY and EXCLUSIVELY in LOKI states 
-     * 
-     * || WARNING || WARNING || WARNING || WARNING || WARNING ||
-     ************************
-     */
-    /*private LokiStateMachine m_LokiSM;
-    public LokiStateMachine LokiSM
-    {
-        get
-        {
-            if (null == m_LokiSM)
-            {
-                m_LokiSM = FindObjectOfType<LokiStateMachine>();
-            }
-
-            return m_LokiSM;
-        }
-    }*/
-
     protected GodStateMachine GSM = null;
 
     public void setFSM(GodStateMachine FSM)

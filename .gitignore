@@ -7,5 +7,6 @@ Library/expandedItems
 Library/ScriptAssemblies/
 Library/StateCache/
 
+.vs/
 Library/CrashedAssetImports.txt
 *.meta
