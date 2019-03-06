@@ -9,12 +9,14 @@ public class GodRunState : GodState
 
     public override void onEnter()
     {
+        GSM.m_animator.SetBool("isRunning", true);
         runFrameWindow = 0.0f;
         gotInput = false;
     }
 
     public override void onExit()
     {
+        GSM.m_animator.SetBool("isRunning", false);
         GSM.PSInput.m_lastState = LastState.Run;
         GSM.PSInput.m_currentDashCooldown = 0.0f;
         runFrameWindow = 0.0f;

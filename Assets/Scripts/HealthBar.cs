@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Scrollbar HBar;
-    public Scrollbar SBar;
-    public Scrollbar PBar1;
-    public Scrollbar PBar2;
-    public Scrollbar PBar3;
+    public Image HBar;
+    public Image SBar;
+    public Image PBar1;
+    public Image PBar2;
+    public Image PBar3;
 
-    public float Health;
-    public float Stamina;
-    public float PowerAll;
-    public float PowerInBar;
+    float Health;
+    float Stamina;
+    float PowerAll;
+    float PowerInBar;
+    float MaxBar;
 
     public void Start()
     {
@@ -22,16 +23,17 @@ public class HealthBar : MonoBehaviour
         Stamina = 100.0f;
         PowerAll = 0.0f;
         PowerInBar = 0.0f;
+        MaxBar = 100.0f;
 
-        PBar1.size = 0.0f;
-        PBar2.size = 0.0f;
-        PBar3.size = 0.0f;
+        PBar1.fillAmount = 0.0f;
+        PBar2.fillAmount = 0.0f;
+        PBar3.fillAmount = 0.0f;
     }
 
     public void Damage(float value)
     {
         Health -= value;
-        HBar.size = Health / 100f;
+        HBar.fillAmount = Health / MaxBar;
     }
 
     public void Attack(float value)
@@ -43,8 +45,8 @@ public class HealthBar : MonoBehaviour
             if(PowerAll == 0.0f)
             {
                 PowerInBar += 20.0f;
-                PBar1.size = PowerInBar / 100;
-                if(PBar1.size==1)
+                PBar1.fillAmount = PowerInBar / MaxBar;
+                if(PBar1.fillAmount==1)
                 {
                     PowerAll += 20.0f;
                     PowerInBar = 0.0f;
@@ -53,8 +55,8 @@ public class HealthBar : MonoBehaviour
             if(PowerAll == 20.0f)
             {
                 PowerInBar += 10.0f;
-                PBar2.size = PowerInBar / 100;
-                if(PBar2.size==1)
+                PBar2.fillAmount = PowerInBar / MaxBar;
+                if(PBar2.fillAmount==1)
                 {
                     PowerAll += 30.0f;
                     PowerInBar = 0.0f;
@@ -63,8 +65,8 @@ public class HealthBar : MonoBehaviour
             if(PowerAll == 50.0f)
             {
                 PowerInBar += 5;
-                PBar3.size = PowerInBar / 100;
-                if(PBar3.size==1)
+                PBar3.fillAmount = PowerInBar / MaxBar;
+                if(PBar3.fillAmount==1)
                 {
                     PowerAll = 100.0f;
                     PowerInBar = 0.0f;
@@ -72,7 +74,7 @@ public class HealthBar : MonoBehaviour
             }
         }
 
-        SBar.size = Stamina / 100;
+        SBar.fillAmount = Stamina / MaxBar;
     }
 
     void IncreaseStamina()
@@ -80,7 +82,7 @@ public class HealthBar : MonoBehaviour
         if (Stamina < 100)
         {
             Stamina += 0.3f;
-            SBar.size = Stamina / 100;
+            SBar.fillAmount = Stamina / MaxBar;
         }
     }
 
