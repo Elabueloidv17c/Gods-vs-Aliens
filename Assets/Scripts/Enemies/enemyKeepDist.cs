@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class enemyKeepDist : enemyState
-//{
+public class enemyKeepDist : enemyState
+{
     /*
      * ************************
      * * State where the enemy tries to maintain a set distance from the player that damaged it
      * ************************
      * */
-    /*
+
     private Vector2 Dir;
     private Rigidbody2D rb;
     private GameObject m_target;
@@ -24,16 +24,16 @@ using UnityEngine;
 
     public override void onEnter()
     {
-        //Debug.Log("Enemy keeps distance");
+        Debug.Log("Enemy keeps distance");
         timer = 3.0f;
         distance = ESM.m_stats.m_viewRadius;
     }
 
     public override void onUpdate()
     {
-        
+
         keepDist(ESM.m_stats.m_velocity);
-        if(timer <= 0)
+        if (timer <= 0)
         {
             ESM.sChase.setTarget(m_target);
             ESM.setState(ESM.sChase);
@@ -42,7 +42,7 @@ using UnityEngine;
         {
             timer -= Time.deltaTime;
         }
-        
+
     }
 
     public override void onExit()
@@ -60,19 +60,22 @@ using UnityEngine;
         if (mag <= (distance + threshold))
         {
             rb.AddForce(Flee(_fScale) * rb.mass);
-            //Debug.Log("Enters Flee");
+            Debug.Log("Enters Flee");
         }
-        //else if (((target.transform.position - transform.position).magnitude - distanceFixer) >= (distance - threshold))
+        else if (((m_target.transform.position - transform.position).magnitude) >= (distance - threshold))
+        {
+
+        }
         else if (mag >= (distance - threshold))
         {
             rb.AddForce(Seek(_fScale) * rb.mass);
-            //Debug.Log("Enters Seek");
+            Debug.Log("Enters Seek");
         }
         else
         {
-            //Debug.Log("Doing shit");
+            Debug.Log("Doing shit");
         }
-        //Debug.Log((target.transform.position - transform.position).magnitude);
+        Debug.Log((m_target.transform.position - transform.position).magnitude);
         rb.velocity *= 0.96f;
     }
 
@@ -94,5 +97,5 @@ using UnityEngine;
     {
         return Mathf.Sqrt(vec.x * vec.x + vec.y * vec.y);
     }
-    */
-//}
+
+}
