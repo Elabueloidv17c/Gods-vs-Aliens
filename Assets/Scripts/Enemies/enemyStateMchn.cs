@@ -10,6 +10,7 @@ public class enemyStateMchn : MonoBehaviour {
      * */
 
     protected Stack<enemyState> stkEnemyState; // The stack for the state machine
+    public enemyState CurrentState;
     public Rigidbody2D rb;
     public Animator animtr;
     public SpriteRenderer sr; // Sprite renderer flipX = false = facing left
@@ -22,15 +23,11 @@ public class enemyStateMchn : MonoBehaviour {
     //public enemyKeepDist sKeepDist;
     public GameObject[] plyrList; // The list of players gets fetched for behaviours
 
-    
-
-
-
-
     public void pushState(enemyState newState)
     {
         stkEnemyState.Push(newState);
         stkEnemyState.Peek().onEnter();
+        CurrentState = stkEnemyState.Peek();
     }
 
     public void setState(enemyState newState)
@@ -39,12 +36,14 @@ public class enemyStateMchn : MonoBehaviour {
         stkEnemyState.Pop();
         stkEnemyState.Push(newState);
         stkEnemyState.Peek().onEnter();
+        CurrentState = stkEnemyState.Peek();
     }
 
     public void popState()
     {
         stkEnemyState.Peek().onExit();
         stkEnemyState.Pop();
+        CurrentState = stkEnemyState.Peek();
     }
 
     public void getHit(atkStats _hit)
