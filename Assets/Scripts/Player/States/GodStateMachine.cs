@@ -45,5 +45,6 @@ public abstract class GodStateMachine : MonoBehaviour
         godStack.Pop();
     }
 
+
     public abstract void GetHit(atkStats hit);
 }
