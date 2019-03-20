@@ -5,6 +5,13 @@ using UnityEngine;
 public class lightShipShot : MonoBehaviour {
 
     public float liveTimer;
+    GodStateMachine player;
+    atkStats m_atkStats;
+
+    public void Start()
+    {
+        m_atkStats = GetComponent<atkStats>();
+    }
 
     private void Update()
     {
@@ -21,5 +28,22 @@ public class lightShipShot : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D coll)
     {
         coll.SendMessage("playerGetHit", SendMessageOptions.DontRequireReceiver);
+        if(coll.gameObject.tag == "Player")
+        {
+            player = coll.gameObject.GetComponent<GodStateMachine>();
+            if (player)
+            {
+                player.GetHit(m_atkStats);
+            }
+            Destroy(gameObject);
+        }
+    }
+
+    public void setDir(Vector2 dir)
+    {
+        if (m_atkStats)
+        {
+            m_atkStats.m_atkDir = dir;
+        }
     }
 }

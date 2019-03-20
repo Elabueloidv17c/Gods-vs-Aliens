@@ -5,9 +5,9 @@ using UnityEngine;
 //[CreateAssetMenu(menuName = "PluggableAI/Actions/Patrol")]
 public class enemyPatrol : enemyState
 {
-    private float wanderTime = 2;
-    private float navTimer = 0;
-    private bool goingRight = false;
+    //private float wanderTime = 2;
+    //private float navTimer = 0;
+    //private bool goingRight = false;
 
     public override void onEnter()
     {
@@ -22,7 +22,7 @@ public class enemyPatrol : enemyState
         for (int i = 0; i < ESM.plyrList.Length; ++i)
         {
             //Debug.Log("Searching player list");
-            if((ESM.transform.position - ESM.plyrList[i].transform.position).magnitude <= 5 /*ESM.m_viewRadius*/)
+            if((ESM.transform.position - ESM.plyrList[i].transform.position).magnitude <= ESM.m_stats.m_viewRadius)
             {
                 ESM.sChase.setTarget(ESM.plyrList[i]);
                 ESM.setState(ESM.sChase);

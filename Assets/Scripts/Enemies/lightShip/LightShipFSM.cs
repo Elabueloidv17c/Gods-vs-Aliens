@@ -16,22 +16,24 @@ public class LightShipFSM : enemyStateMchn
 
     void Start()
     {
+        plyrList = Camera.main.GetComponent<playerList>().getPlayerArr();
         stkEnemyState = new Stack<enemyState>();
         sPatrol = gameObject.AddComponent(typeof(enemyPatrol)) as enemyPatrol;
         sChase = gameObject.AddComponent(typeof(enemyChase)) as enemyChase;
         sAttack = gameObject.AddComponent(typeof(enemyAttack)) as enemyAttack;
         sKeepDist = gameObject.AddComponent(typeof(enemyKeepDist)) as enemyKeepDist;
 
+        sPatrol.setFSM(this);
+        sChase.setFSM(this);
+        sAttack.setFSM(this);
+        sKeepDist.setFSM(this);
+
         animtr = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        plyrList = Camera.main.GetComponent<playerList>().getPlayerArr();
+        //plyrList = Camera.main.GetComponent<playerList>().getPlayerArr();
         sr = GetComponent<SpriteRenderer>();
         pushState(sPatrol);
         m_stats = GetComponent<enemyStats>();
-
-        m_stats.m_attackPower = 10;
-        m_stats.m_hp = 100;
-        m_stats.m_weight = 10;
     }
 
 
@@ -39,6 +41,17 @@ public class LightShipFSM : enemyStateMchn
     // Update is called once per frame
     void Update()
     {
-        //stkEnemyState.Peek().onUpdate();
+        stkEnemyState.Peek().onUpdate();
+        CurrentState = stkEnemyState.Peek();
+    }
+
+    public GameObject getShotHitBox()
+    {
+        return m_hitBox;
+    }
+
+    public enemyState getKeepDistState()
+    {
+        return sKeepDist;
     }
 }

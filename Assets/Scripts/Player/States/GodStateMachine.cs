@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GodStateMachine : MonoBehaviour
+public abstract class GodStateMachine : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator m_animator;
@@ -44,4 +44,6 @@ public class GodStateMachine : MonoBehaviour
         godStack.Peek().onExit();
         godStack.Pop();
     }
+
+    public abstract void GetHit(atkStats hit);
 }

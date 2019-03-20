@@ -39,4 +39,10 @@ public class LokiStateMachine : GodStateMachine
     {
         godStack.Peek().onUpdate();
     }
+
+    public override void GetHit(atkStats hit)
+    {
+        PSInput.m_currentHealth -= hit.m_damage;
+        rb.AddForce(hit.m_atkDir * hit.m_knockbackForce);
+    }
 }

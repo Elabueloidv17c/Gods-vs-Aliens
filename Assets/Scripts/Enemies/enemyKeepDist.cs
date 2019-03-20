@@ -11,11 +11,9 @@ public class enemyKeepDist : enemyState
      * */
 
     private Vector2 Dir;
-    private Rigidbody2D rb;
     private GameObject m_target;
     private float timer;
     private float distance;
-    private float threshold = 2;
 
     public void setTarget(GameObject _target)
     {
@@ -25,22 +23,22 @@ public class enemyKeepDist : enemyState
     public override void onEnter()
     {
         Debug.Log("Enemy keeps distance");
-        timer = 3.0f;
-        distance = ESM.m_stats.m_viewRadius;
+        timer = 0.0f;
+        distance = ESM.m_stats.m_attackDist;
     }
 
     public override void onUpdate()
     {
 
         keepDist(ESM.m_stats.m_velocity);
-        if (timer <= 0)
+        if (timer >= ESM.m_stats.m_shotCoolDown)
         {
             ESM.sChase.setTarget(m_target);
             ESM.setState(ESM.sChase);
         }
         else
         {
-            timer -= Time.deltaTime;
+            timer += Time.deltaTime;
         }
 
     }
@@ -57,18 +55,18 @@ public class enemyKeepDist : enemyState
         Debug.Log(m_target.transform.position);
         float mag = (m_target.transform.position - GetComponent<Transform>().position).magnitude;
 
-        if (mag <= (distance + threshold))
+        if (mag <= (distance + ESM.m_stats.m_approachThreshold))
         {
-            rb.AddForce(Flee(_fScale) * rb.mass);
+            ESM.rb.AddForce(Flee(_fScale) * ESM.rb.mass);
             Debug.Log("Enters Flee");
         }
-        else if (((m_target.transform.position - transform.position).magnitude) >= (distance - threshold))
+        else if (((m_target.transform.position - transform.position).magnitude) >= (distance - ESM.m_stats.m_approachThreshold))
         {
 
         }
-        else if (mag >= (distance - threshold))
+        else if (mag >= (distance - ESM.m_stats.m_approachThreshold))
         {
-            rb.AddForce(Seek(_fScale) * rb.mass);
+            ESM.rb.AddForce(Seek(_fScale) * ESM.rb.mass);
             Debug.Log("Enters Seek");
         }
         else
@@ -76,7 +74,7 @@ public class enemyKeepDist : enemyState
             Debug.Log("Doing shit");
         }
         Debug.Log((m_target.transform.position - transform.position).magnitude);
-        rb.velocity *= 0.96f;
+        ESM.rb.velocity *= 0.96f;
     }
 
     public Vector2 Seek(float _fScale)
