@@ -7,7 +7,6 @@ public class GodDashState : GodState
     float currentDashTime;
     float direction;
 
-
     public override void onEnter()
     {
         GSM.m_animator.SetBool("isDashing", true);
@@ -23,6 +22,7 @@ public class GodDashState : GodState
         }
 
         currentDashTime = 0.0f;
+
         GSM.rb.velocity = new Vector2(direction * GSM.PSInput.m_fdashSpeed, 0.0f);
     }
 
@@ -38,21 +38,20 @@ public class GodDashState : GodState
     {
         if (currentDashTime >= GSM.PSInput.m_fdashTime)
         {
+            GSM.rb.velocity = new Vector2(direction * GSM.PSInput.m_fwalkSpeed, 0.0f);
+
             if (GSM.PSInput.m_lastState == LastState.Idle)
             {
-                GSM.rb.velocity = new Vector2(0.0f, 0.0f);
                 GSM.setState(GSM.Idle);
             }
 
-            if (GSM.PSInput.m_lastState == LastState.Walk)
+            if (GSM.PSInput.m_lastState == LastState.Walk || GSM.PSInput.m_lastState == LastState.Idle)
             {
-                GSM.rb.velocity = new Vector2(direction * GSM.PSInput.m_fwalkSpeed, 0.0f);
                 GSM.setState(GSM.Walk);
             }
 
             if (GSM.PSInput.m_lastState == LastState.Run)
             {
-                GSM.rb.velocity = new Vector2(direction * GSM.PSInput.m_frunSpeed, 0.0f);
                 GSM.setState(GSM.Run);
             }
         }

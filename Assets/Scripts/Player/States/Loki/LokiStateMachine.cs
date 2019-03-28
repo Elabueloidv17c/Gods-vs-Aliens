@@ -8,7 +8,9 @@ public class LokiStateMachine : GodStateMachine
     void Start()
     {
         m_animator = GetComponent<Animator>();
+        m_collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         PSInput = GetComponent<PlayerInputStats>();
         godStack = new Stack<GodState>();
 
@@ -38,6 +40,7 @@ public class LokiStateMachine : GodStateMachine
     void Update()
     {
         godStack.Peek().onUpdate();
+        spriteFlip();
     }
 
     public override void GetHit(atkStats hit)

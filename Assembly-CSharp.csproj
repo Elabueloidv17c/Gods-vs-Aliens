@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Enemies\enemyStats.cs" />
     <Compile Include="Assets\Scripts\Enemies\lightShip\LightShipFSM.cs" />
     <Compile Include="Assets\Scripts\Enemies\lightShip\lightShipShot.cs" />
+    <Compile Include="Assets\Scripts\gameConstants.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\MultipleTargetCamara.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />

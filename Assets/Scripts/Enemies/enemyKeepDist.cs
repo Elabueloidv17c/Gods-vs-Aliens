@@ -22,7 +22,6 @@ public class enemyKeepDist : enemyState
 
     public override void onEnter()
     {
-        Debug.Log("Enemy keeps distance");
         timer = 0.0f;
         distance = ESM.m_stats.m_attackDist;
     }
@@ -50,9 +49,6 @@ public class enemyKeepDist : enemyState
 
     public void keepDist(float _fScale)
     {
-
-        Debug.Log(transform.position);
-        Debug.Log(m_target.transform.position);
         float mag = (m_target.transform.position - GetComponent<Transform>().position).magnitude;
 
         if (mag <= (distance + ESM.m_stats.m_approachThreshold))
@@ -73,7 +69,6 @@ public class enemyKeepDist : enemyState
         {
             Debug.Log("Doing shit");
         }
-        Debug.Log((m_target.transform.position - transform.position).magnitude);
         ESM.rb.velocity *= 0.96f;
     }
 

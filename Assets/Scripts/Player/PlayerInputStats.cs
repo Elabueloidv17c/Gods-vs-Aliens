@@ -26,6 +26,9 @@ public class PlayerInputStats : MonoBehaviour
     public KeyCode kDash;
     public KeyCode kJump;
 
+    public float m_layerScaleDown;
+    public float m_layerChangeDurtion;
+
     public float m_fwalkSpeed;
     public float m_frunSpeed;
     public float m_fjumpForce;

@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class GodStateMachine : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public SpriteRenderer sr;
     public Animator m_animator;
+    public BoxCollider2D m_collider;
 
     public Stack<GodState> godStack;
     public PlayerInputStats PSInput;
@@ -45,6 +47,17 @@ public abstract class GodStateMachine : MonoBehaviour
         godStack.Pop();
     }
 
+    public void spriteFlip()
+    {
+        if (rb.velocity.x < 0)
+        {
+            sr.flipX = true;
+        }
+        if (rb.velocity.x > 0)
+        {
+            sr.flipX = false;
+        }
+    }
 
     public abstract void GetHit(atkStats hit);
 }

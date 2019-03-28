@@ -41,16 +41,15 @@ public class GodIdleState : GodState
         //Change Layer
         else if (Input.GetKeyDown(GSM.PSInput.kChangeLayerDown) || Input.GetKeyDown(GSM.PSInput.kChangeLayerUp))
         {
-            GSM.setState(GSM.ChangeLayer);
             if (Input.GetKeyDown(GSM.PSInput.kChangeLayerDown))
             {
                 GSM.ChangeLayer.setLayerDir(false);
             }
-
             else
             {
                 GSM.ChangeLayer.setLayerDir(true);
             }
+            GSM.setState(GSM.ChangeLayer);
         }
     }
 }
