@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class lightShipShot : MonoBehaviour {
-
+    // TODO: make base class hitbox
     public float liveTimer;
     GodStateMachine player;
     atkStats m_atkStats;

@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0ab3ad76dc8d44fb61bc5afa49c57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1734465532}
   HBar: {fileID: 2077987526}
   SBar: {fileID: 950401373}
   PBar1: {fileID: 2107961263}
@@ -2168,7 +2169,7 @@ GameObject:
   - component: {fileID: 827136473}
   - component: {fileID: 827136472}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Hud0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3259,13 +3260,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1387120588107406, guid: 73720170ab4c66b4290e551aee816e07, type: 3}
+      propertyPath: m_Name
+      value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387120588107406, guid: 73720170ab4c66b4290e551aee816e07, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4231021579937678, guid: 73720170ab4c66b4290e551aee816e07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.1839213
       objectReference: {fileID: 0}
     - target: {fileID: 4231021579937678, guid: 73720170ab4c66b4290e551aee816e07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3234632
+      value: -3.36
       objectReference: {fileID: 0}
     - target: {fileID: 4231021579937678, guid: 73720170ab4c66b4290e551aee816e07, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4850,7 +4859,7 @@ GameObject:
   - component: {fileID: 1734465540}
   - component: {fileID: 1734465539}
   m_Layer: 12
-  m_Name: Player
+  m_Name: Loki
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4996,6 +5005,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626f04ca4be6f004596627169c1f2cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox_0: {fileID: 3333715029106129907, guid: 028c7252d127ec04b9d3c5e43b4ba1cf,
+    type: 3}
   kChangeLayerUp: 273
   kChangeLayerDown: 274
   kUp: 119
@@ -5004,6 +5015,7 @@ MonoBehaviour:
   kDown: 115
   kDash: 102
   kJump: 32
+  kATK: 101
   m_layerScaleDown: 0.15
   m_layerChangeDurtion: 2
   m_fwalkSpeed: 5
@@ -5013,11 +5025,15 @@ MonoBehaviour:
   m_currentDashCooldown: 0
   m_fdashTime: 1
   m_fdashSpeed: 10
+  m_atkFollowUpDelay: 0.15
+  m_atkDuration: 1
   m_nlives: 3
-  m_maxHealth: 0
-  m_currentHealth: 0
-  m_maxStamina: 0
-  m_currentStamina: 0
+  m_maxHealth: 100
+  m_currentHealth: 100
+  m_maxStamina: 100
+  m_currentStamina: 100
+  m_maxPower: 0
+  m_currentPower: 0
   m_lastState: 0
 --- !u!114 &1734465540
 MonoBehaviour:
@@ -5045,6 +5061,7 @@ MonoBehaviour:
   Jump: {fileID: 0}
   Run: {fileID: 0}
   Walk: {fileID: 0}
+  Attack: {fileID: 0}
   currState: {fileID: 0}
 --- !u!1 &1765370209
 GameObject:

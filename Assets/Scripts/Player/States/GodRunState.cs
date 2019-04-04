@@ -45,9 +45,14 @@ public class GodRunState : GodState
         //--------------------------------------------------------------------------------------------------------------------
         //Transitions
         //--------------------------------------------------------------------------------------------------------------------
-        
+        //Attack
+        if (Input.GetKeyDown(GSM.PSInput.kATK))
+        {
+            GSM.setState(GSM.Attack);
+        }
+
         //Idle
-        if (!gotInput && runFrameWindow > 0.1f)
+        else if (!gotInput && runFrameWindow > 0.1f)
         {
             GSM.setState(GSM.Idle);
         }

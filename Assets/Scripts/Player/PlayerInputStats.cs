@@ -17,6 +17,8 @@ public enum LastState
 
 public class PlayerInputStats : MonoBehaviour
 {
+    public GameObject hitbox_0;
+
     public KeyCode kChangeLayerUp;
     public KeyCode kChangeLayerDown;
     public KeyCode kUp;
@@ -25,6 +27,7 @@ public class PlayerInputStats : MonoBehaviour
     public KeyCode kDown;
     public KeyCode kDash;
     public KeyCode kJump;
+    public KeyCode kATK;
 
     public float m_layerScaleDown;
     public float m_layerChangeDurtion;
@@ -38,6 +41,9 @@ public class PlayerInputStats : MonoBehaviour
     public float m_fdashTime;
     public float m_fdashSpeed;
 
+    public float m_atkFollowUpDelay;
+    public float m_atkDuration;
+
     public int m_nlives;
 
     public float m_maxHealth;
@@ -45,6 +51,9 @@ public class PlayerInputStats : MonoBehaviour
 
     public float m_maxStamina;
     public float m_currentStamina;
+
+    public float m_maxPower;
+    public float m_currentPower;
 
     public LastState m_lastState;
 }

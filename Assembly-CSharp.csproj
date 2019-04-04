@@ -88,6 +88,8 @@
     <Compile Include="Assets\Scripts\Player\States\GodStateDash.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\States\GodWalkState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\Loki\Loki_hitBox_0.cs" />
+    <Compile Include="Assets\Scripts\Player\States\Loki\LokiStateATK.cs" />
     <Compile Include="Assets\Scripts\Player\States\Loki\LokiStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\States\Loki\LokiWalk.cs" />
     <Compile Include="Assets\Scripts\playerList.cs" />

@@ -32,6 +32,12 @@ public class GodIdleState : GodState
             GSM.setState(GSM.Crouch);
         }
 
+        //Attack
+        else if (Input.GetKeyDown(GSM.PSInput.kATK))
+        {
+            GSM.setState(GSM.Attack);
+        }
+
         //Jump
         else if (Input.GetKeyDown(GSM.PSInput.kJump))
         {

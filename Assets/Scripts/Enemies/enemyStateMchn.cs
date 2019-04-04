@@ -46,7 +46,7 @@ public class enemyStateMchn : MonoBehaviour {
         CurrentState = stkEnemyState.Peek();
     }
 
-    public void getHit(atkStats _hit)
+    public void GetHit(atkStats _hit)
     {
         m_stats.m_hp -= _hit.m_damage;
         stkEnemyState.Peek().SendMessage("getHit", _hit, SendMessageOptions.DontRequireReceiver);

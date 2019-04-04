@@ -45,9 +45,14 @@ public class GodWalkState : GodState
         //--------------------------------------------------------------------------------------------------------------------
         //Transitions
         //--------------------------------------------------------------------------------------------------------------------
+        //Attack
+        if (Input.GetKeyDown(GSM.PSInput.kATK))
+        {
+            GSM.setState(GSM.Attack);
+        }
 
         //Run
-        if (runFrameWindow > 0 && (walkDir < 0 && Input.GetKeyDown(GSM.PSInput.kLeft)) || (walkDir > 0 && Input.GetKeyDown(GSM.PSInput.kRight)))
+        else if (runFrameWindow > 0 && (walkDir < 0 && Input.GetKeyDown(GSM.PSInput.kLeft)) || (walkDir > 0 && Input.GetKeyDown(GSM.PSInput.kRight)))
         {
             GSM.setState(GSM.Run);
         }

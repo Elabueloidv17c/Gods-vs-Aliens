@@ -21,6 +21,7 @@ public abstract class GodStateMachine : MonoBehaviour
     public GodJumpState Jump;
     public GodRunState Run;
     public GodWalkState Walk;
+    public GodState Attack;
 
     public GodState currState;
 
